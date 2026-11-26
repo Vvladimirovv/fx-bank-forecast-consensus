@@ -1,0 +1,11 @@
+# secrets
+.env
+*.key
+run.local.bat
+# data and caches (scraped page text is copyrighted; workbooks are personal)
+.cache/
+*.xlsx
+# misc
+__pycache__/
+.claude/
+desktop.ini
