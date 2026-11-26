@@ -1,0 +1,4 @@
+requests>=2.31
+pyyaml>=6.0
+trafilatura>=1.8
+openpyxl>=3.1

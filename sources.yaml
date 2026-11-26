@@ -1,0 +1,97 @@
+# ============================================================
+#  Which desks to look for, where to trust, what counts as sane
+# ============================================================
+
+# Anything not on this list is discarded before a single token is
+# spent on extraction. This is the most important setting in the file.
+#
+#   3 = the bank's own publication. Accepted on its own.
+#   2 = journalism that quotes bank notes directly.
+#   1 = weak. Needs a second, independent domain to survive.
+allowlist:
+  # --- primary sources -------------------------------------
+  ing.com: 3
+  think.ing.com: 3
+  research.rabobank.com: 3
+  danskebank.com: 3
+  nordea.com: 3
+  the-investment-institute.unicredit.eu: 3
+  commerzbank.com: 3
+  scotiabank.com: 3
+  gbm.scotiabank.com: 3
+  mufgresearch.com: 3
+  westpaciq.westpac.com.au: 3
+  anz.com: 3
+  nab.com.au: 3
+  wellsfargo.com: 3
+  sc.com: 3
+  bnpparibas.com: 3
+
+  # --- tier-1 media that quotes notes verbatim -------------
+  reuters.com: 2
+  fxstreet.com: 2
+  poundsterlinglive.com: 2
+  capital.com: 2
+  exchangerates.org.uk: 2
+  bloomberg.com: 2
+  ft.com: 2
+
+  # --- weak, needs corroboration ---------------------------
+  investing.com: 1
+  fxempire.com: 1
+  dailyfx.com: 1
+
+banks:
+  - J.P. Morgan
+  - Goldman Sachs
+  - Morgan Stanley
+  - Citi
+  - Deutsche Bank
+  - Barclays
+  - UBS
+  - Nomura
+  - ING
+  - BNP Paribas
+  - HSBC
+  - Danske Bank
+  - Rabobank
+  - Nordea
+  - Commerzbank
+  - Scotiabank
+  - MUFG
+  - Standard Chartered
+  - Westpac
+  - Wells Fargo
+  - UniCredit
+  - Societe Generale
+
+# Instruments you track, with the band a number must fall inside.
+# A "target" outside these is an extraction error, not a bold call.
+instruments:
+  EUR/USD: [0.80, 1.60]
+  GBP/USD: [1.00, 1.80]
+  USD/JPY: [90, 200]
+  AUD/USD: [0.45, 0.95]
+  USD/CHF: [0.60, 1.20]
+  USD/CAD: [1.00, 1.70]
+  NZD/USD: [0.40, 0.90]
+  XAU/USD: [1000, 8000]
+  WTI: [20, 200]
+
+# The model must map every horizon onto one of these, or say "other"
+# (which lands in quarantine rather than being guessed at).
+horizons:
+  - 3M
+  - 6M
+  - 12M
+  - 2026Q4
+  - 2027Q2
+  - 2027Q4
+
+settings:
+  max_age_days: 90        # anything older is a republished stale page
+  results_per_query: 6    # Brave results to consider per query
+  pages_per_bank: 5       # how many to actually fetch and read
+  request_pause: 1.2      # seconds between calls; Brave free tier is 1/sec
+  same_target_pct: 0.3    # two numbers this close count as the same call
+  model: claude-haiku-4-5-20251001
